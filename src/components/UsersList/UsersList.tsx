@@ -19,7 +19,6 @@ const UsersList: React.FC = () => {
   });
 
   const onItemClick = (e: React.MouseEvent, value: string) => {
-    e.stopPropagation();
     dispatch(setUser(value));
   };
 
@@ -78,6 +77,9 @@ const UsersList: React.FC = () => {
                         as="a"
                         size="sm"
                         href={`${html_url}?tab=repositories`}
+                        onClick={(
+                          e: React.MouseEvent<HTMLElement, MouseEvent>
+                        ) => e.stopPropagation()}
                       >
                         see repositories
                       </Button>
