@@ -1,0 +1,27 @@
+@import './config';
+@import '~bootstrap/scss/bootstrap';
+
+html {
+  min-height: 100%;
+  font-size: 14px;
+  @include main-bg-color
+}
+
+body {
+  min-height: 100%;
+  color: map-get($custom-theme, 'light');
+  @include main-bg-color
+}
+
+#root {
+  min-height: 100%;
+  @include main-bg-color
+}
+
+.btn.btn-primary {
+  color: map-get($custom-theme, "light");
+}
+
+@import './Header';
+@import './UserList';
+@import './UserProfile';

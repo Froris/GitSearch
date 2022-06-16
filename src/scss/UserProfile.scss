@@ -1,0 +1,33 @@
+.userProfile {
+  border: 1px solid map-get($custom-theme, 'main-border');
+  border-radius: 5px;
+  background-color: map-get($custom-theme, 'main-container');
+}
+
+.userProfile__bio {
+  border-radius: 5px;
+  color: map-get($custom-theme, "user-bio-font");
+  background-color: map-get($custom-theme, "user-bio-bg");
+}
+
+.userProfile__img {
+  width: 200px;
+  height: 200px;
+}
+
+.userProfile__repos-list {
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.userProfile__info-list .list-group-item {
+  color: map-get($custom-theme, "light");
+  background-color: map-get($custom-theme, 'main-container');
+  border-color: map-get($custom-theme, "main-border");
+}
+
+@media screen and (min-width: 768px) {
+  .userProfile {
+    margin-top: 5rem;
+  }
+}
