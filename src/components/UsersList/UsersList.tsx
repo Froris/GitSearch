@@ -77,6 +77,7 @@ const UsersList: React.FC = () => {
                         as="a"
                         size="sm"
                         href={`${html_url}?tab=repositories`}
+                        target="_blank"
                         onClick={(
                           e: React.MouseEvent<HTMLElement, MouseEvent>
                         ) => e.stopPropagation()}
