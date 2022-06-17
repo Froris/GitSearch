@@ -24,7 +24,7 @@ const UsersList: React.FC = () => {
 
   return (
     <section className="mt-4 mt-md-5">
-      <h2 className="mb-4 mb-md-5">Users List</h2>
+      <h2 className="mb-4 mb-md-4">Users List</h2>
       <Form>
         <Form.Label htmlFor={inputId}>Find user</Form.Label>
         <Form.Control

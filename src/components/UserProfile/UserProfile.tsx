@@ -47,7 +47,7 @@ const UserProfile: React.FC = () => {
         user && (
           <>
             <h2 className="mb-4 mb-md-5">User Profile</h2>
-            <section className="p-1 p-sm-2 userProfile">
+            <section className="p-1 p-sm-2">
               <UserInfo user={user} />
               <section>
                 <ReposSearch onInputChange={setSearchValue} />

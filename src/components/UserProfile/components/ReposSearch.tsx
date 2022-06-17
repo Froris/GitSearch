@@ -21,7 +21,7 @@ const ReposSearch: React.FC<Props> = ({ onInputChange }) => {
         }
       />
       <Form.Text id="inputHelpBlock" muted>
-        "You can type a specific repository name to find it in the list below"
+        You can type a specific repository name to find it in the list below
       </Form.Text>
     </Form>
   );
