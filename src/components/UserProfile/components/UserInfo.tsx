@@ -33,7 +33,7 @@ const UserInfo: React.FC<Props> = ({ user }) => {
       </Col>
       <Col xs={12} sm={6} md={6}>
         <ListGroup variant="flush" className="userProfile__info-list">
-          <ListGroup.Item>Name: {login}</ListGroup.Item>
+          <ListGroup.Item>UserName: {login}</ListGroup.Item>
           <ListGroup.Item>Email: {email}</ListGroup.Item>
           <ListGroup.Item>Location: {location}</ListGroup.Item>
           <ListGroup.Item>Join Date: {formatDate(created_at)}</ListGroup.Item>
