@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "../slices/userSlice";
+import userReducer from "../slices/currentUserSlice";
 import { gitSearchApi } from "../../services";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
   reducer: {
-    user: userReducer,
+    currentUser: userReducer,
     [gitSearchApi.reducerPath]: gitSearchApi.reducer,
   },
 

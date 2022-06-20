@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { User, UserRepo, UserSearchResult } from "./types";
 
 export const gitSearchApi = createApi({
-  reducerPath: "gitSearch",
+  reducerPath: "users",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.github.com/" }),
   endpoints: (builder) => ({
     getUser: builder.query<UserSearchResult, string>({

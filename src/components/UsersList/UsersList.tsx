@@ -2,7 +2,7 @@ import React, { useId, useState } from "react";
 import { useGetUserQuery } from "../../services";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
-import { setUser } from "../../redux/slices/userSlice";
+import { setUser } from "../../redux/slices/currentUserSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
