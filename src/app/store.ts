@@ -1,16 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../features/usersList/currentUserSlice";
-import { gitSearchApi } from "../features/api/gitHubApi";
+import { gitHubApi } from "../features/api/gitHubApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
   reducer: {
     currentUser: userReducer,
-    [gitSearchApi.reducerPath]: gitSearchApi.reducer,
+    [gitHubApi.reducerPath]: gitHubApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(gitSearchApi.middleware),
+    getDefaultMiddleware().concat(gitHubApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
