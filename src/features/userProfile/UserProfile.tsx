@@ -5,6 +5,7 @@ import { UserRepo } from "../api/types";
 import UserInfo from "./components/UserInfo";
 import ReposSearch from "./components/ReposSearch";
 import ReposList from "./components/ReposList";
+import StatusMessage from "../../common/components/StatusMessage";
 
 const UserProfile: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -14,6 +15,7 @@ const UserProfile: React.FC = () => {
     data: user,
     error: userErr,
     isLoading: isUserLoading,
+    isFetching: isUserFetching,
   } = useGetUserProfileQuery(userName, {
     skip: !userName,
   });
@@ -22,6 +24,7 @@ const UserProfile: React.FC = () => {
     data: repos = [],
     error: reposErr,
     isLoading: isReposLoading,
+    isFetching: isReposFetching,
   } = useGetUserReposQuery(userName, { skip: !userName });
 
   const filteredList: UserRepo[] = useMemo(
@@ -34,31 +37,27 @@ const UserProfile: React.FC = () => {
 
   return (
     <section className="mt-4 mt-md-5">
-      {isUserLoading ? (
-        <span className="d-inline-block m-2 my-sm-4 fs-4 fst-italic">
-          Loading ...
-        </span>
-      ) : userErr ? (
-        <span className="d-inline-block my-3 my-sm-4 fs-4">
-          Something went wrong... Please reload the page and try again.
-        </span>
-      ) : (
-        user && (
-          <>
-            <h2 className="mb-4 mb-md-5">User Profile</h2>
-            <section className="p-1 p-sm-2">
-              <UserInfo user={user} />
-              <section>
-                <ReposSearch onInputChange={setSearchValue} />
-                <ReposList
-                  isLoading={isReposLoading}
-                  isError={reposErr}
-                  list={filteredList}
-                />
-              </section>
+      <StatusMessage
+        isLoading={isUserLoading}
+        isFetching={isUserFetching}
+        isError={userErr}
+      />
+      {user && (
+        <>
+          <h2 className="mb-4 mb-md-5">User Profile</h2>
+          <section className="p-1 p-sm-2">
+            <UserInfo user={user} />
+            <section>
+              <ReposSearch onInputChange={setSearchValue} />
+              <ReposList
+                isLoading={isReposLoading}
+                isFetching={isReposFetching}
+                isError={reposErr}
+                list={filteredList}
+              />
             </section>
-          </>
-        )
+          </section>
+        </>
       )}
     </section>
   );

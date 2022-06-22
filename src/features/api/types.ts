@@ -36,6 +36,17 @@ export type User = UserSearch & {
   updated_at: string;
 };
 
+export type UserBio = {
+  avatar_url: string;
+  login: string;
+  email: string;
+  location: string;
+  created_at: string;
+  followers: number;
+  following: number;
+  bio: string;
+};
+
 export type UserSearchResult = {
   total_count: number;
   items: UserSearch[];

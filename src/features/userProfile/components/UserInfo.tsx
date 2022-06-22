@@ -2,10 +2,10 @@ import { Col, Container, Row } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { formatDate } from "../../../common/utils";
 import React from "react";
-import { User } from "../../api/types";
+import { User, UserBio } from "../../api/types";
 
 type Props = {
-  user: User;
+  user: User | UserBio;
 };
 
 const UserInfo: React.FC<Props> = ({ user }) => {

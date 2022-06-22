@@ -8,13 +8,14 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { UserSearch } from "../api/types";
 import Button from "react-bootstrap/Button";
+import StatusMessage from "../../common/components/StatusMessage";
 
 const UsersList: React.FC = () => {
   const dispatch = useAppDispatch();
   const [searchValue, setSearchValue] = useState("");
   const inputId: string = useId();
 
-  const { data, error, isLoading } = useGetUserQuery(searchValue, {
+  const { data, error, isLoading, isFetching } = useGetUserQuery(searchValue, {
     skip: !searchValue,
   });
 
@@ -40,57 +41,49 @@ const UsersList: React.FC = () => {
           You can type a specific username to find it in the list below
         </Form.Text>
       </Form>
-      {isLoading ? (
-        <span className="d-inline-block my-3 my-sm-4 fs-4 fst-italic">
-          Loading ...
-        </span>
-      ) : error ? (
-        <span className="d-inline-block my-3 my-sm-4 fs-4">
-          API rate limit exceeded... Please reload the page and try again.
-        </span>
-      ) : (
-        data &&
-        searchValue && (
-          <ListGroup className="mt-3 mt-sm-4 d-block usersList__list">
-            {data.items.map(
-              ({ login, id, avatar_url, html_url }: UserSearch) => (
-                <ListGroup.Item
-                  action
-                  onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-                    onItemClick(e, login)
-                  }
-                  key={id}
-                >
-                  <Row className="align-items-center">
-                    <Col xs={3} sm={2} md={3} lg={2}>
-                      <img
-                        className="img-fluid list__item-picture"
-                        src={avatar_url}
-                        alt="avatar"
-                      />
-                    </Col>
-                    <Col xs={4} sm={7} md={6} lg={7}>
-                      {login}
-                    </Col>
-                    <Col xs={4} sm={3} md={3} lg={3}>
-                      <Button
-                        as="a"
-                        size="sm"
-                        href={`${html_url}?tab=repositories`}
-                        target="_blank"
-                        onClick={(
-                          e: React.MouseEvent<HTMLElement, MouseEvent>
-                        ) => e.stopPropagation()}
-                      >
-                        see repositories
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-              )
-            )}
-          </ListGroup>
-        )
+      <StatusMessage
+        isLoading={isLoading}
+        isError={error}
+        isFetching={isFetching}
+      />
+      {data && searchValue && (
+        <ListGroup className="mt-3 mt-sm-4 d-block usersList__list">
+          {data.items.map(({ login, id, avatar_url, html_url }: UserSearch) => (
+            <ListGroup.Item
+              action
+              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+                onItemClick(e, login)
+              }
+              key={id}
+            >
+              <Row className="align-items-center">
+                <Col xs={3} sm={2} md={3} lg={2}>
+                  <img
+                    className="img-fluid list__item-picture"
+                    src={avatar_url}
+                    alt="avatar"
+                  />
+                </Col>
+                <Col xs={4} sm={7} md={6} lg={7}>
+                  {login}
+                </Col>
+                <Col xs={4} sm={3} md={3} lg={3}>
+                  <Button
+                    as="a"
+                    size="sm"
+                    href={`${html_url}?tab=repositories`}
+                    target="_blank"
+                    onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+                      e.stopPropagation()
+                    }
+                  >
+                    see repositories
+                  </Button>
+                </Col>
+              </Row>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
       )}
     </section>
   );
