@@ -1,12 +1,12 @@
 import React, { useId, useState } from "react";
-import { useGetUserQuery } from "../../services";
+import { useGetUserQuery } from "../api/gitHubApi";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
-import { setUser } from "../../redux/slices/currentUserSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { setUser } from "./currentUserSlice";
+import { useAppDispatch } from "../../common/hooks";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { UserSearch } from "../../services/types";
+import { UserSearch } from "../api/types";
 import Button from "react-bootstrap/Button";
 
 const UsersList: React.FC = () => {

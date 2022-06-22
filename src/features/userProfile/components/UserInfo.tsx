@@ -1,8 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
-import { formatDate } from "../../../helpers";
+import { formatDate } from "../../../common/utils";
 import React from "react";
-import { User } from "../../../services/types";
+import { User } from "../../api/types";
 
 type Props = {
   user: User;

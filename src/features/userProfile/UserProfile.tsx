@@ -1,15 +1,14 @@
 import React, { useMemo, useState } from "react";
-import { useGetUserProfileQuery, useGetUserReposQuery } from "../../services";
-import { selectUserLogin } from "../../redux/selectors";
-import { useAppSelector } from "../../redux/hooks";
-import { UserRepo } from "../../services/types";
+import { useGetUserProfileQuery, useGetUserReposQuery } from "../api/gitHubApi";
+import { useAppSelector } from "../../common/hooks";
+import { UserRepo } from "../api/types";
 import UserInfo from "./components/UserInfo";
 import ReposSearch from "./components/ReposSearch";
 import ReposList from "./components/ReposList";
 
 const UserProfile: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
-  const userName = useAppSelector(selectUserLogin);
+  const userName = useAppSelector((state) => state.currentUser.userLogin);
 
   const {
     data: user,

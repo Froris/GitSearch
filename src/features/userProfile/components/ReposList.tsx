@@ -1,5 +1,5 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import { UserRepo } from "../../../services/types";
+import { UserRepo } from "../../api/types";
 import { Col, Row } from "react-bootstrap";
 import React from "react";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
