@@ -5,7 +5,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
   reducer: {
-    currentUser: userReducer,
+    user: userReducer,
     [gitHubApi.reducerPath]: gitHubApi.reducer,
   },
 

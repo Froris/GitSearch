@@ -1,31 +1,28 @@
 import React, { useMemo, useState } from "react";
-import { useGetUserProfileQuery, useGetUserReposQuery } from "../api/gitHubApi";
+import { useGetUserReposQuery } from "../api/gitHubApi";
 import { useAppSelector } from "../../common/hooks";
-import { UserRepo } from "../api/types";
 import UserInfo from "./components/UserInfo";
 import ReposSearch from "./components/ReposSearch";
 import ReposList from "./components/ReposList";
 import StatusMessage from "../../common/components/StatusMessage";
+import { UserRepo } from "../api/types";
 
 const UserProfile: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
-  const userName = useAppSelector((state) => state.currentUser.userLogin);
-
   const {
-    data: user,
+    currentUser,
+    isLoading,
     error: userErr,
-    isLoading: isUserLoading,
-    isFetching: isUserFetching,
-  } = useGetUserProfileQuery(userName, {
-    skip: !userName,
-  });
+  } = useAppSelector((state) => state.user);
 
   const {
     data: repos = [],
     error: reposErr,
     isLoading: isReposLoading,
     isFetching: isReposFetching,
-  } = useGetUserReposQuery(userName, { skip: !userName });
+  } = useGetUserReposQuery(currentUser.login, {
+    skip: !currentUser || !searchValue,
+  });
 
   const filteredList: UserRepo[] = useMemo(
     () =>
@@ -37,16 +34,12 @@ const UserProfile: React.FC = () => {
 
   return (
     <section className="mt-4 mt-md-5">
-      <StatusMessage
-        isLoading={isUserLoading}
-        isFetching={isUserFetching}
-        isError={userErr}
-      />
-      {user && (
+      <StatusMessage isLoading={isLoading} isError={userErr} />
+      {currentUser.login && (
         <>
           <h2 className="mb-4 mb-md-5">User Profile</h2>
           <section className="p-1 p-sm-2">
-            <UserInfo user={user} />
+            <UserInfo user={currentUser} />
             <section>
               <ReposSearch onInputChange={setSearchValue} />
               <ReposList

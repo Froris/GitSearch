@@ -2,7 +2,7 @@ import React, { useId, useState } from "react";
 import { useGetUserQuery } from "../api/gitHubApi";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
-import { setUser } from "./currentUserSlice";
+import { fetchUser } from "./currentUserSlice";
 import { useAppDispatch } from "../../common/hooks";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -20,7 +20,7 @@ const UsersList: React.FC = () => {
   });
 
   const onItemClick = (e: React.MouseEvent, value: string) => {
-    dispatch(setUser(value));
+    dispatch(fetchUser(value));
   };
 
   return (
