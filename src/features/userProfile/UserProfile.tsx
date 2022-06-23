@@ -21,7 +21,7 @@ const UserProfile: React.FC = () => {
     isLoading: isReposLoading,
     isFetching: isReposFetching,
   } = useGetUserReposQuery(currentUser.login, {
-    skip: !currentUser || !searchValue,
+    skip: !currentUser,
   });
 
   const filteredList: UserRepo[] = useMemo(
